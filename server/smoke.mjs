@@ -142,6 +142,10 @@ try {
   r = await call('GET', '/api/exam/reports', { token: candidateToken });
   check('report list loads', r.status === 200, `HTTP ${r.status}`);
 
+  console.log('\nPresence');
+  r = await call('POST', '/api/auth/heartbeat', { token: candidateToken, body: { page: 'select_company' } });
+  check('candidate heartbeat is accepted', r.status === 200, `HTTP ${r.status}`);
+
   console.log('\nRecruiter');
   r = await call('POST', '/api/auth/recruiter-login', { body: { id: ADMIN_ID, password: ADMIN_PW } });
   check('recruiter can log in', r.status === 200 && r.data?.user?.role === 'recruiter', `HTTP ${r.status}`);
@@ -154,6 +158,7 @@ try {
   check('recruiter overview loads', r.status === 200, `HTTP ${r.status}`);
   const seen = JSON.stringify(r.data ?? {}).includes(email);
   check('overview lists the new candidate', seen, 'candidate not found in the overview');
+  check('overview counts the candidate as live', (r.data?.analytics?.liveCandidates ?? 0) >= 1, JSON.stringify(r.data?.analytics));
 
   r = await call('GET', '/api/admin/overview', { token: candidateToken });
   check('a candidate cannot open the recruiter overview', r.status === 403 || r.status === 401, `HTTP ${r.status}`);

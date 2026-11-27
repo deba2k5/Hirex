@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { apiPost } from '@/lib/api';
 import CompanySelect from './CompanySelect';
 import ExamRunner from './ExamRunner';
 import ExamReportsPage from './ExamReportsPage';
@@ -14,6 +15,14 @@ type Step = 'select_company' | 'exam' | 'reports' | 'report';
 const CandidateFlow = ({ onBack }: CandidateFlowProps) => {
   const [step, setStep] = useState<Step>('select_company');
   const [sessionId, setSessionId] = useState<string | null>(null);
+
+  // Tell the server this candidate is online, so recruiters see a live count.
+  useEffect(() => {
+    const ping = () => void apiPost('/api/auth/heartbeat', { page: step }).catch(() => {});
+    ping();
+    const t = window.setInterval(ping, 25_000);
+    return () => window.clearInterval(t);
+  }, [step]);
 
   if (step === 'select_company') {
     return (

@@ -106,6 +106,8 @@ router.get('/overview', requireAuth, requireRole('recruiter'), asyncHandler(asyn
       enrollmentStatus: user.enrollmentStatus ?? 'pending',
       createdAt: user.createdAt ?? null,
       lastUpdatedAt: user.updatedAt ?? null,
+      lastSeenAt: user.lastSeenAt ?? null,
+      currentPage: user.currentPage ?? null,
       sessions: candidateSessions,
       completedAssessments: completed.length,
       averagePercentage: percentages.length ? Math.round(percentages.reduce((sum, value) => sum + value, 0) / percentages.length) : null,
@@ -128,6 +130,8 @@ router.get('/overview', requireAuth, requireRole('recruiter'), asyncHandler(asyn
       activeAssessments: sessions.filter((session) => ['pending_manual_review', 'in_progress'].includes(session.status)).length,
       averageScore: scored.length ? Math.round(scored.reduce((sum, value) => sum + value, 0) / scored.length) : 0,
       flaggedAssessments: violationsBySession.size,
+      // candidates whose app pinged within the last 90 seconds
+      liveCandidates: candidates.filter((c) => c.lastSeenAt && Date.now() - new Date(c.lastSeenAt).getTime() < 90_000).length,
     },
     candidates,
   });

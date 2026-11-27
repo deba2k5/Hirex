@@ -3,7 +3,7 @@
 // ViolationLog.strike() semantics: N consecutive bad checks confirm one violation episode;
 // a good check resets the streak so a single blurry frame never trips anything.
 
-export type ViolationType = 'NO_FACE' | 'MULTIPLE_FACES' | 'LOOKING_AWAY' | 'IDENTITY_MISMATCH' | 'TAB_HIDDEN';
+export type ViolationType = 'NO_FACE' | 'MULTIPLE_FACES' | 'LOOKING_AWAY' | 'IDENTITY_MISMATCH' | 'TAB_HIDDEN' | 'SCREEN_SHARE_STOPPED';
 export type ViolationSeverity = 'warning' | 'critical';
 
 export interface ConfirmedViolation {
@@ -18,6 +18,7 @@ const SEVERITY: Record<ViolationType, ViolationSeverity> = {
   LOOKING_AWAY: 'warning',
   IDENTITY_MISMATCH: 'critical',
   TAB_HIDDEN: 'warning',
+  SCREEN_SHARE_STOPPED: 'critical',
 };
 
 const MESSAGES: Record<ViolationType, string> = {
@@ -26,6 +27,7 @@ const MESSAGES: Record<ViolationType, string> = {
   LOOKING_AWAY: 'Candidate appears to be looking away from the screen.',
   IDENTITY_MISMATCH: 'Face did not match the enrolled identity.',
   TAB_HIDDEN: 'Browser tab lost focus or was hidden.',
+  SCREEN_SHARE_STOPPED: 'Screen sharing was stopped.',
 };
 
 const STRIKES_TO_CONFIRM = 3;

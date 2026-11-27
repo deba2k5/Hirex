@@ -96,6 +96,17 @@ router.post('/recruiter-login', asyncHandler(async (req, res) => {
   res.json({ token: issueToken(recruiter), user: toUserDto(recruiter) });
 }));
 
+// Presence: the candidate app pings this every ~25 s, so the recruiter dashboard can show who is online.
+router.post('/heartbeat', requireAuth, asyncHandler(async (req, res) => {
+  const page = typeof req.body?.page === 'string' ? req.body.page.slice(0, 40) : null;
+  const db = await getDb();
+  await db.collection('users').updateOne(
+    { _id: new ObjectId(req.userId), role: 'candidate' },
+    { $set: { lastSeenAt: new Date(), currentPage: page } },
+  );
+  res.json({ ok: true });
+}));
+
 router.get('/me', requireAuth, asyncHandler(async (req, res) => {
   const db = await getDb();
   const user = await db.collection('users').findOne({ _id: new ObjectId(req.userId) });

@@ -4,7 +4,6 @@ import AuthGate from '@/components/auth/AuthGate';
 import CandidateFlow from '@/components/exam/CandidateFlow';
 import Landing from '@/components/landing/Landing';
 import AdminLogin from '@/components/landing/AdminLogin';
-import { trackUserLogin } from '@/utils/userActivityTracker';
 import { useAuthProfile } from '@/hooks/useAuthProfile';
 import { apiPost, clearToken, getToken, setToken } from '@/lib/api';
 
@@ -36,8 +35,6 @@ const Index = () => {
       setShowAdminLogin(false);
       setAdminCredentials({ id: '', password: '' });
       
-      // Track admin login
-      trackUserLogin('recruiter-admin', adminCredentials.id, 'Recruitix Administrator', 'recruiter');
     } catch (error: any) {
       const errorMessage = error instanceof Error && error.message !== 'Failed to fetch'
         ? error.message

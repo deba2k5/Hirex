@@ -8,51 +8,47 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Recruitix is a dark, champagne-on-obsidian product. The component library (cards, inputs,
+       dialogs, outline buttons...) reads these variables, so setting them here themes every
+       screen at once, including pop-ups that render outside the page container. */
+    --background: 228 28% 4%;
+    --foreground: 42 38% 93%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 228 22% 7%;
+    --card-foreground: 42 38% 93%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 228 24% 7%;
+    --popover-foreground: 42 38% 93%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 42 54% 69%;
+    --primary-foreground: 38 62% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 228 16% 13%;
+    --secondary-foreground: 42 38% 93%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 228 16% 13%;
+    --muted-foreground: 40 9% 62%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 228 16% 15%;
+    --accent-foreground: 42 38% 93%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 52%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 228 12% 17%;
+    --input: 228 12% 20%;
+    --ring: 42 54% 69%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 228 28% 5%;
+    --sidebar-foreground: 42 38% 93%;
+    --sidebar-primary: 42 54% 69%;
+    --sidebar-primary-foreground: 38 62% 8%;
+    --sidebar-accent: 228 16% 14%;
+    --sidebar-accent-foreground: 42 38% 93%;
+    --sidebar-border: 228 12% 17%;
+    --sidebar-ring: 42 54% 69%;
   }
 
   /* ==========================================================================
