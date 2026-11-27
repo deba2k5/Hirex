@@ -51,7 +51,7 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
 
   if (questions.length === 0) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="hirex-app-shell min-h-screen flex items-center justify-center">
         <p className="text-white">No questions configured for this round yet.</p>
       </div>
     );
@@ -61,17 +61,17 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
   const isLast = currentIndex === questions.length - 1;
 
   return (
-    <div className="min-h-screen bg-black p-4">
+    <div className="hirex-app-shell min-h-screen p-4">
       <div className="max-w-6xl mx-auto py-8 space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-white">{title}</h1>
-          <Badge className="bg-slate-800 text-white flex items-center gap-1">
+          <Badge className="bg-white/[.06] text-white flex items-center gap-1">
             <Clock className="w-3 h-3" /> {formatTime(timeLeft)}
           </Badge>
         </div>
 
         <Progress value={((currentIndex + 1) / questions.length) * 100} className="h-2" />
-        <p className="text-slate-400 text-sm">
+        <p className="text-white/55 text-sm">
           Question {currentIndex + 1} of {questions.length} {question.category ? `· ${question.category}` : ''}
         </p>
 
@@ -90,7 +90,7 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
                 {question.options.map((option) => (
                   <div key={option} className="flex items-center space-x-2 py-1">
                     <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option} className="text-slate-200">{option}</Label>
+                    <Label htmlFor={option} className="text-white/75">{option}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -99,7 +99,7 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
                 value={answers[question.id] ?? ''}
                 onChange={(e) => setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))}
                 placeholder="Type your answer here..."
-                className="min-h-[160px] bg-slate-800 border-slate-600 text-white"
+                className="min-h-[160px] bg-white/[.06] border-white/15 text-white"
               />
             )}
           </CardContent>
@@ -111,7 +111,7 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
             variant="outline"
             disabled={currentIndex === 0}
             onClick={() => setCurrentIndex((i) => i - 1)}
-            className="bg-transparent border-slate-600 text-slate-300 hover:bg-slate-800"
+            className="bg-transparent border-white/15 text-white/75 hover:bg-white/[.06]"
           >
             <ChevronLeft className="w-4 h-4 mr-1" /> Previous
           </Button>

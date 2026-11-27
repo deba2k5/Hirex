@@ -120,13 +120,13 @@ const ExamFaceGate = ({ sessionId, onUnlocked, onManualReview, onCancel }: ExamF
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+    <div className="hirex-app-shell min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-2xl hirex-card">
         <CardHeader>
           <CardTitle className="text-2xl text-white flex items-center gap-2">
             <Eye className="w-6 h-6 text-champagne" /> Identity Verification
           </CardTitle>
-          <CardDescription className="text-slate-300">
+          <CardDescription className="text-white/75">
             Confirm it's really you before the exam unlocks.
           </CardDescription>
         </CardHeader>
@@ -162,7 +162,7 @@ const ExamFaceGate = ({ sessionId, onUnlocked, onManualReview, onCancel }: ExamF
                     : 'Start Verification'}
           </Button>
 
-          <Button onClick={onCancel} variant="outline" className="w-full bg-transparent border-slate-600 text-slate-300 hover:bg-slate-800">
+          <Button onClick={onCancel} variant="outline" className="w-full bg-transparent border-white/15 text-white/75 hover:bg-white/[.06]">
             Cancel
           </Button>
         </CardContent>

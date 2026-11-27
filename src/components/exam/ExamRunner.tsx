@@ -264,7 +264,7 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
   if (initError) {
     return (
       <div className="hirex-app-shell min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-lg bg-slate-900 border-red-500/50">
+        <Card className="w-full max-w-lg bg-ink-900 border-red-500/50">
           <CardHeader>
             <CardTitle className="text-white">Communication Round could not open</CardTitle>
             <CardDescription className="text-red-300">{initError}</CardDescription>
@@ -281,10 +281,10 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
     return (
       <div className="hirex-app-shell min-h-screen flex items-center justify-center p-4">
         <Card className="w-full max-w-lg hirex-card">
-          <CardHeader><CardTitle className="text-white">Proctored Exam</CardTitle><CardDescription className="text-slate-300">Camera and screen sharing are required for proctoring. You can exit the exam at any time.</CardDescription></CardHeader>
+          <CardHeader><CardTitle className="text-white">Proctored Exam</CardTitle><CardDescription className="text-white/75">Camera and screen sharing are required for proctoring. You can exit the exam at any time.</CardDescription></CardHeader>
           <CardContent className="space-y-4">
             <Button onClick={startSecureExam} className="w-full lx-btn-gold">Enable camera and screen sharing</Button>
-            <Button onClick={onExamComplete} variant="outline" className="w-full border-slate-600 text-slate-300">Exit</Button>
+            <Button onClick={onExamComplete} variant="outline" className="w-full border-white/15 text-white/75">Exit</Button>
           </CardContent>
         </Card>
       </div>
@@ -293,7 +293,7 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
 
   if (loading || !session?.currentRound || !durations) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="hirex-app-shell min-h-screen flex items-center justify-center">
         <p className="text-white">Loading your exam...</p>
       </div>
     );
@@ -320,7 +320,7 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
 
   return (
     <div className="hirex-app-shell relative min-h-screen">
-      <video ref={videoRef} autoPlay muted playsInline className="fixed bottom-4 right-4 w-40 h-32 object-cover rounded-lg border border-slate-700 z-50" />
+      <video ref={videoRef} autoPlay muted playsInline className="fixed bottom-4 right-4 w-40 h-32 object-cover rounded-lg border border-white/15 z-50" />
       <Button onClick={() => { stopEverything(); onExamComplete(); }} className="fixed bottom-4 left-4 z-50 bg-red-700 hover:bg-red-800 text-white">Exit exam</Button>
 
       {liveViolations.length > 0 && (
@@ -334,7 +334,7 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
         </div>
       )}
 
-      <Badge className="fixed top-4 left-4 z-50 bg-slate-800 text-white">{session.currentRound === 'english' ? 'English Communication Round' : ROUND_TITLES[session.currentRound]}</Badge>
+      <Badge className="fixed top-4 left-4 z-50 bg-white/[.06] text-white">{session.currentRound === 'english' ? 'English Communication Round' : ROUND_TITLES[session.currentRound]}</Badge>
 
       {session.currentRound === 'english' ? (
         <EnglishCommunicationView

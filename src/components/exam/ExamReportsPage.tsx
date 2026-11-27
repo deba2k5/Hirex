@@ -51,15 +51,15 @@ const ExamReportsPage = ({ onSelectReport, onBack, onLogout }: ExamReportsPagePr
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-white">My exam reports</h1>
-            <p className="text-slate-400 mt-2">Each report belongs to one completed assessment section.</p>
+            <p className="text-white/55 mt-2">Each report belongs to one completed assessment section.</p>
           </div>
-          <Button onClick={onLogout} variant="outline" className="border-slate-600 text-slate-300 bg-transparent"><LogOut className="w-4 h-4 mr-2" />Log out</Button>
+          <Button onClick={onLogout} variant="outline" className="border-white/15 text-white/75 bg-transparent"><LogOut className="w-4 h-4 mr-2" />Log out</Button>
         </div>
 
-        {error && <Card className="bg-slate-900 border-red-500/50"><CardContent className="p-5 text-red-300">{error}</CardContent></Card>}
+        {error && <Card className="bg-ink-900 border-red-500/50"><CardContent className="p-5 text-red-300">{error}</CardContent></Card>}
         {loading && <Card className="hirex-card"><CardContent className="p-5 text-white">Loading reports...</CardContent></Card>}
         {!loading && !error && reports.length === 0 && (
-          <Card className="hirex-card"><CardContent className="p-8 text-center text-slate-300">No completed exam reports yet. Complete an assessment to see it here.</CardContent></Card>
+          <Card className="hirex-card"><CardContent className="p-8 text-center text-white/75">No completed exam reports yet. Complete an assessment to see it here.</CardContent></Card>
         )}
         <div className="grid gap-4">
           {reports.map((report) => (
@@ -69,17 +69,17 @@ const ExamReportsPage = ({ onSelectReport, onBack, onLogout }: ExamReportsPagePr
                   <BarChart3 className="w-7 h-7 text-champagne mt-1" />
                   <div>
                     <CardTitle className="text-white">{SECTION_TITLES[report.section ?? ''] ?? 'Assessment'}</CardTitle>
-                    <CardDescription className="text-slate-400">
+                    <CardDescription className="text-white/55">
                       {report.endedAt ? `Completed ${new Date(report.endedAt).toLocaleString()}` : 'Completed exam'}
                     </CardDescription>
                   </div>
                 </div>
-                <Badge className={report.status === 'auto_submitted' ? 'bg-amber-900 text-amber-200' : 'bg-green-900 text-green-200'}>
+                <Badge className={report.status === 'auto_submitted' ? 'bg-amber-900 text-amber-200' : 'bg-green-900 text-ivory'}>
                   {report.status === 'auto_submitted' ? 'Auto-submitted' : 'Submitted'}
                 </Badge>
               </CardHeader>
               <CardContent className="flex items-center justify-between gap-4">
-                <div className="text-sm text-slate-300">
+                <div className="text-sm text-white/75">
                   {report.percentage === null ? 'Score pending' : <><strong className="text-white">{report.percentage}%</strong>{report.score !== null ? ` · Score ${report.score}` : ''}</>}
                 </div>
                 <Button onClick={() => onSelectReport(report.sessionId)} className="hirex-action lx-btn-gold"><FileText className="w-4 h-4 mr-2" />View report</Button>
@@ -87,7 +87,7 @@ const ExamReportsPage = ({ onSelectReport, onBack, onLogout }: ExamReportsPagePr
             </Card>
           ))}
         </div>
-        <Button onClick={onBack} variant="outline" className="border-slate-600 text-slate-300 bg-transparent">Back to assessment sections</Button>
+        <Button onClick={onBack} variant="outline" className="border-white/15 text-white/75 bg-transparent">Back to assessment sections</Button>
       </div>
     </div>
   );

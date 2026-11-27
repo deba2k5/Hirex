@@ -63,7 +63,7 @@ const Index = () => {
   if (getToken()) {
     if (authLoading) {
       return (
-        <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="hirex-app-shell min-h-screen flex items-center justify-center">
           <p className="text-white">Loading your profile...</p>
         </div>
       );
