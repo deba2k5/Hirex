@@ -27,8 +27,17 @@ export function Reveal({
   );
 }
 
-/** A card with a soft champagne spotlight that follows the pointer. */
-export function SpotlightCard({ children, className = '' }: { children: ReactNode; className?: string }) {
+/** A card with a soft champagne spotlight that follows the pointer, and an optional background photo. */
+export function SpotlightCard({
+  children,
+  className = '',
+  photo,
+}: {
+  children: ReactNode;
+  className?: string;
+  /** a background photograph: src, how it sits in the card, and its tone */
+  photo?: { src: string; className?: string; tone?: 'ivory' | 'gold' };
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
@@ -41,14 +50,27 @@ export function SpotlightCard({ children, className = '' }: { children: ReactNod
     <div
       ref={ref}
       onMouseMove={onMove}
-      className={`group relative overflow-hidden rounded-3xl border border-white/[.08] bg-gradient-to-b from-white/[.055] to-white/[.015] transition-colors duration-500 hover:border-champagne/30 ${className}`}
+      className={`group relative isolate overflow-hidden rounded-3xl border border-white/[.08] bg-ink-900/70 transition-colors duration-500 hover:border-champagne/30 ${className}`}
     >
+      {photo && (
+        <img
+          src={photo.src}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className={`pointer-events-none absolute z-0 max-w-none transition-all duration-[900ms] ease-out group-hover:scale-[1.05] group-hover:opacity-90 ${
+            photo.tone === 'ivory' ? 'lx-tone-ivory' : 'lx-tone-gold'
+          } ${photo.className ?? ''}`}
+        />
+      )}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-white/[.04] to-transparent" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 z-[1] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{ background: 'radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(216,185,122,.14), transparent 60%)' }}
       />
-      <div className="relative h-full">{children}</div>
+      <div className="relative z-10 h-full">{children}</div>
     </div>
   );
 }

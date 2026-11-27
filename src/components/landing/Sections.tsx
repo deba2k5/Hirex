@@ -14,6 +14,7 @@ import {
   Video,
 } from 'lucide-react';
 import { Reveal, SectionHeading, SpotlightCard } from './motion';
+import { RevealWords } from './fx';
 
 /* ------------------------------------------------------------------ trust bar */
 
@@ -56,7 +57,7 @@ export function Platform() {
   return (
     <section id="platform" className="relative mx-auto max-w-7xl scroll-mt-24 px-5 py-28 sm:px-8 lg:py-36">
       <Reveal>
-        <SectionHeading eyebrow="The platform" title={<>Everything an assessment needs, <em className="text-champagne">nothing it doesn’t.</em></>}>
+        <SectionHeading eyebrow="The platform" title={<RevealWords parts={[{ t: 'Everything an assessment needs, ' }, { t: 'nothing it doesn’t.', c: 'italic text-champagne' }]} as="span" />}>
           One considered workspace replaces scattered tools and gut feeling, with an experience candidates respect and
           teams can trust.
         </SectionHeading>
@@ -65,13 +66,16 @@ export function Platform() {
       <div className="mt-16 grid auto-rows-[minmax(220px,auto)] gap-5 lg:grid-cols-6">
         {/* rounds */}
         <Reveal className="lg:col-span-4 lg:row-span-2">
-          <SpotlightCard className="h-full p-8 sm:p-10">
+          <SpotlightCard
+            className="h-full p-8 sm:p-10"
+            photo={{ src: '/img/vapor-grid.webp', tone: 'gold', className: '-right-6 top-0 h-full w-[48%] object-cover opacity-70 [mask-image:linear-gradient(270deg,#000_30%,transparent_98%)]' }}
+          >
             <p className="text-[.7rem] font-semibold uppercase tracking-[.26em] text-champagne">Six rounds, one flow</p>
             <h3 className="mt-4 max-w-md font-display text-4xl leading-tight text-ivory sm:text-5xl">Every angle of a candidate, in a single sitting.</h3>
             <p className="mt-4 max-w-lg leading-7 text-white/55">
               Mix and sequence rounds for each role. Candidates move through a calm, guided flow while the system captures the signal.
             </p>
-            <ul className="mt-9 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-9 grid gap-3 sm:grid-cols-2 lg:max-w-[54%] lg:grid-cols-1">
               {ROUNDS.map(({ icon: Icon, label }, i) => (
                 <motion.li
                   key={label + i}
@@ -91,7 +95,11 @@ export function Platform() {
 
         {/* proctoring */}
         <Reveal delay={0.08} className="lg:col-span-2">
-          <SpotlightCard className="h-full p-7">
+          <SpotlightCard
+            className="h-full min-h-[300px] p-7"
+            photo={{ src: '/img/wire-face.webp', tone: 'gold', className: '-bottom-6 -right-10 h-[92%] w-auto opacity-60 [mask-image:linear-gradient(200deg,#000_30%,transparent_85%)]' }}
+          >
+            <span aria-hidden="true" className="lx-scan pointer-events-none absolute inset-x-0 top-0 hidden h-1/4 group-hover:block" />
             <span className="grid h-11 w-11 place-items-center rounded-2xl bg-champagne/10 text-champagne"><ScanFace className="h-5 w-5" /></span>
             <h3 className="mt-6 font-display text-3xl text-ivory">Live proctoring</h3>
             <p className="mt-3 text-sm leading-6 text-white/55">Camera and screen-share monitoring with face detection runs quietly in the background.</p>
@@ -100,7 +108,10 @@ export function Platform() {
 
         {/* ai interview */}
         <Reveal delay={0.14} className="lg:col-span-2">
-          <SpotlightCard className="h-full p-7">
+          <SpotlightCard
+            className="h-full min-h-[300px] p-7"
+            photo={{ src: '/img/wire-hand.webp', tone: 'gold', className: '-bottom-10 -right-12 h-[78%] w-auto opacity-55 [mask-image:linear-gradient(210deg,#000_25%,transparent_85%)]' }}
+          >
             <span className="grid h-11 w-11 place-items-center rounded-2xl bg-champagne/10 text-champagne"><Video className="h-5 w-5" /></span>
             <h3 className="mt-6 font-display text-3xl text-ivory">AI interviews</h3>
             <p className="mt-3 text-sm leading-6 text-white/55">Technical questions drawn from the candidate’s own CV, answered by voice or text.</p>
@@ -201,9 +212,9 @@ const LOG = [
 
 export function Integrity() {
   return (
-    <section id="integrity" className="relative mx-auto grid max-w-7xl scroll-mt-24 items-center gap-16 px-5 py-28 sm:px-8 lg:grid-cols-2 lg:gap-24 lg:py-36">
+    <section id="integrity" className="relative mx-auto grid max-w-7xl scroll-mt-24 items-center gap-16 px-5 py-28 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:py-36">
       <Reveal>
-        <SectionHeading eyebrow="Integrity" title={<>Trust you can <em className="text-champagne">show your work on.</em></>}>
+        <SectionHeading eyebrow="Integrity" title={<RevealWords as="span" parts={[{ t: 'Trust you can ' }, { t: 'show your work on.', c: 'italic text-champagne' }]} />}>
           Every score, deduction and event is recorded. When someone asks why a candidate scored the way they did, you have
           the answer.
         </SectionHeading>
@@ -227,36 +238,44 @@ export function Integrity() {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="relative">
-          <div aria-hidden="true" className="absolute -inset-8 -z-10 rounded-full bg-champagne/[.07] blur-3xl" />
-          <div className="lx-glass overflow-hidden rounded-[1.75rem]">
-            <div className="flex items-center justify-between border-b border-white/[.07] px-6 py-4">
-              <p className="text-[.68rem] font-semibold uppercase tracking-[.24em] text-white/45">Session timeline</p>
-              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[.65rem] text-white/60">Illustrative</span>
+        {/* a candidate alone in a pool of light, the session log hovering over them */}
+        <div className="relative isolate min-h-[34rem] overflow-hidden rounded-[2rem] border border-white/10 sm:min-h-[40rem]">
+          <img
+            src="/img/spotlight-desk.webp"
+            alt="A candidate seated at a computer in a pool of light"
+            loading="lazy"
+            className="lx-tone-ivory absolute inset-0 -z-10 h-full w-full object-cover object-[50%_55%] transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
+          />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/30 to-ink-950/40" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_60%,rgba(216,185,122,.16),transparent_60%)]" />
+
+          <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-ink-950/50 px-3 py-1.5 text-[.65rem] font-medium uppercase tracking-[.22em] text-white/70 backdrop-blur">
+            <span className="h-1.5 w-1.5 animate-pulse-ring rounded-full bg-emerald-400" /> Live session
+          </span>
+
+          <div className="absolute inset-x-4 bottom-4 sm:inset-x-6 sm:bottom-6">
+            <div className="lx-glass overflow-hidden rounded-[1.5rem]">
+              <div className="flex items-center justify-between border-b border-white/[.07] px-5 py-3.5">
+                <p className="text-[.66rem] font-semibold uppercase tracking-[.24em] text-white/50">Session timeline</p>
+                <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[.62rem] text-white/60">Illustrative</span>
+              </div>
+              <ol className="px-5 py-3">
+                {LOG.slice(0, 5).map((e, i) => (
+                  <motion.li
+                    key={e.t}
+                    initial={{ opacity: 0, x: 18 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                    className="flex items-center gap-4 py-2"
+                  >
+                    <span className="w-[4.2rem] shrink-0 font-mono text-[.7rem] tabular-nums text-white/40">{e.t}</span>
+                    <span className={`h-2 w-2 shrink-0 rounded-full ${e.tone === 'warn' ? 'bg-amber-400' : 'bg-champagne'}`} />
+                    <span className="text-[.82rem] text-ivory/90">{e.text}</span>
+                  </motion.li>
+                ))}
+              </ol>
             </div>
-            <ol className="relative px-6 py-6">
-              <span aria-hidden="true" className="absolute bottom-8 left-[6.2rem] top-8 w-px bg-gradient-to-b from-champagne/50 via-white/10 to-transparent" />
-              {LOG.map((e, i) => (
-                <motion.li
-                  key={e.t}
-                  initial={{ opacity: 0, x: 18 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
-                  className="relative grid grid-cols-[4.5rem_1fr] items-center gap-6 py-3"
-                >
-                  <span className="font-mono text-xs tabular-nums text-white/40">{e.t}</span>
-                  <span className="flex items-center gap-3 text-sm text-ivory/90">
-                    <span
-                      className={`relative z-10 -ml-[1.62rem] h-2.5 w-2.5 shrink-0 rounded-full ring-4 ring-ink-800 ${
-                        e.tone === 'warn' ? 'bg-amber-400' : 'bg-champagne'
-                      }`}
-                    />
-                    {e.text}
-                  </span>
-                </motion.li>
-              ))}
-            </ol>
           </div>
         </div>
       </Reveal>

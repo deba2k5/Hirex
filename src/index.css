@@ -145,6 +145,30 @@
   .lx-btn-glass:hover { background: rgba(255,255,255,.1); border-color: rgba(216,185,122,.5); transform: translateY(-2px); }
 
   /* ------------------------------------------------------------------
+     Photography treatments. The supplied images are black-and-white (or purple/teal), so they
+     are normalised into the site palette: warm ivory, or full champagne gold.
+     ------------------------------------------------------------------ */
+  .lx-tone-ivory { filter: grayscale(1) sepia(.2) contrast(1.1) brightness(.96); }
+  .lx-tone-gold  { filter: grayscale(1) sepia(.95) saturate(2.6) hue-rotate(-14deg) contrast(1.12) brightness(.9); }
+
+  .lx-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(244, 239, 228, 0.3);
+    transition: -webkit-text-stroke-color .4s, color .4s;
+  }
+
+  @keyframes lx-scan {
+    0%   { transform: translateY(-30%); opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(520%); opacity: 0; }
+  }
+  .lx-scan {
+    animation: lx-scan 4.8s cubic-bezier(.4,0,.2,1) infinite;
+    background: linear-gradient(180deg, transparent, rgba(241,223,180,.55) 50%, transparent);
+  }
+
+  /* ------------------------------------------------------------------
      Inner app screens (kept class names)
      ------------------------------------------------------------------ */
   .hirex-home {
@@ -175,6 +199,22 @@
     background-size: 64px 64px;
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 80%);
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 80%);
+  }
+  /* a lone figure in a pool of light, fading in from the right edge of every inner screen */
+  .hirex-app-shell::after {
+    content: "";
+    position: fixed;
+    inset: 0 0 0 38%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .5;
+    background: url('/img/spotlight-desk.webp') center 40% / cover no-repeat;
+    filter: grayscale(1) sepia(.25) contrast(1.1) brightness(.8);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 55%, #000 100%);
+  }
+  @media (max-width: 900px) {
+    .hirex-app-shell::after { inset: 0; opacity: .22; -webkit-mask-image: none; mask-image: none; }
   }
   .hirex-app-shell > * { position: relative; z-index: 1; }
 

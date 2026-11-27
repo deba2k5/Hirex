@@ -16,9 +16,19 @@ const field =
 /** Recruiter sign-in, in the same visual language as the landing page. Behaviour is unchanged. */
 export default function AdminLogin({ credentials, onChange, error, loading, onSubmit, onCancel }: Props) {
   return (
-    <div className="hirex-app-shell lx-grain relative flex min-h-screen items-center justify-center overflow-hidden p-4">
-      <div aria-hidden="true" className="absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-champagne/[.12] blur-[110px]" />
+    <div className="hirex-app-shell lx-grain relative grid min-h-screen overflow-hidden lg:grid-cols-[1fr_1.05fr]">
+      {/* the photograph, on the right: a receding grid and a lone figure shaping a new world */}
+      <div className="relative order-2 hidden overflow-hidden lg:order-2 lg:block">
+        <img src="/img/vapor-grid.webp" alt="" aria-hidden="true" className="lx-tone-gold absolute inset-0 h-full w-full object-cover object-[60%_50%]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/20 to-ink-950/30" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent" />
+        <p className="absolute left-12 top-12 max-w-xs font-display text-4xl leading-tight text-ivory">
+          Evidence, <span className="lx-text-gold italic">explained.</span>
+        </p>
+      </div>
 
+      <div className="relative z-10 order-1 flex items-center justify-center p-4 sm:p-10">
+      <div aria-hidden="true" className="absolute -top-40 left-1/2 h-[480px] w-[560px] -translate-x-1/2 rounded-full bg-champagne/[.12] blur-[110px]" />
       <div className="relative z-10 w-full max-w-md">
         <button
           onClick={onCancel}
@@ -82,6 +92,7 @@ export default function AdminLogin({ credentials, onChange, error, loading, onSu
             {loading ? 'Authenticating…' : 'Access dashboard'}
           </button>
         </form>
+      </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { ArrowRight, Github } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { BrandMark, BRAND, Wordmark } from './brand';
 import { Reveal, SectionHeading, SpotlightCard } from './motion';
+import { Magnetic, RevealWords } from './fx';
 
 interface Handlers {
   onCandidate: () => void;
@@ -15,7 +16,10 @@ export function Audiences({ onCandidate, onRecruiter }: Handlers) {
     <section className="mx-auto max-w-7xl px-5 pb-28 sm:px-8 lg:pb-36">
       <div className="grid gap-5 md:grid-cols-2">
         <Reveal>
-          <SpotlightCard className="h-full p-9 sm:p-12">
+          <SpotlightCard
+            className="h-full min-h-[26rem] p-9 sm:p-12"
+            photo={{ src: '/img/wire-hand.webp', tone: 'gold', className: '-bottom-24 -right-32 h-[82%] w-auto opacity-40 [mask-image:linear-gradient(215deg,#000_25%,transparent_80%)]' }}
+          >
             <p className="text-[.7rem] font-semibold uppercase tracking-[.26em] text-champagne">For candidates</p>
             <h3 className="mt-5 font-display text-4xl leading-tight text-ivory sm:text-5xl">A fair chance to show what you can do.</h3>
             <p className="mt-5 max-w-md leading-7 text-white/55">
@@ -28,7 +32,10 @@ export function Audiences({ onCandidate, onRecruiter }: Handlers) {
           </SpotlightCard>
         </Reveal>
         <Reveal delay={0.1}>
-          <SpotlightCard className="h-full p-9 sm:p-12">
+          <SpotlightCard
+            className="h-full min-h-[26rem] p-9 sm:p-12"
+            photo={{ src: '/img/wire-face.webp', tone: 'gold', className: '-bottom-10 -right-10 h-[96%] w-auto opacity-45 [mask-image:linear-gradient(215deg,#000_25%,transparent_80%)]' }}
+          >
             <p className="text-[.7rem] font-semibold uppercase tracking-[.26em] text-champagne">For recruiters</p>
             <h3 className="mt-5 font-display text-4xl leading-tight text-ivory sm:text-5xl">Evidence your team can act on.</h3>
             <p className="mt-5 max-w-md leading-7 text-white/55">
@@ -74,7 +81,7 @@ export function Faq() {
     <section id="faq" className="relative scroll-mt-24 border-y border-white/[.07] bg-ink-900/50">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 py-28 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-24 lg:py-36">
         <Reveal>
-          <SectionHeading eyebrow="Questions" title={<>Good things to <em className="text-champagne">know.</em></>}>
+          <SectionHeading eyebrow="Questions" title={<RevealWords as="span" parts={[{ t: 'Good things to ' }, { t: 'know.', c: 'italic text-champagne' }]} />}>
             The short answers to what teams and candidates ask most.
           </SectionHeading>
         </Reveal>
@@ -99,22 +106,32 @@ export function Faq() {
 
 export function CtaBand({ onCandidate }: Pick<Handlers, 'onCandidate'>) {
   return (
-    <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+    <section className="mx-auto max-w-[1400px] px-3 py-24 sm:px-6 lg:py-32">
       <Reveal>
-        <div className="relative isolate overflow-hidden rounded-[2.5rem] border border-champagne/25 px-6 py-20 text-center sm:px-16 lg:py-28">
-          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink-900" />
-          <div aria-hidden="true" className="absolute -top-1/2 left-1/2 -z-10 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-champagne/[.18] blur-[110px]" />
-          <div aria-hidden="true" className="lx-grid absolute inset-0 -z-10 opacity-60" />
-          <h2 className="mx-auto max-w-3xl font-display text-5xl leading-[1] tracking-tight text-ivory sm:text-7xl">
-            Make your next hire <span className="lx-text-gold italic">your best one.</span>
+        <div className="relative isolate overflow-hidden rounded-[2.5rem] border border-champagne/25 px-6 py-24 text-center sm:px-16 lg:py-36">
+          <img
+            src="/img/creation-hands.webp"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="lx-tone-gold absolute inset-0 -z-10 h-full w-full -scale-x-100 object-cover object-[50%_50%] opacity-45"
+          />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_50%,rgba(6,7,10,.2),rgba(6,7,10,.88)_75%)]" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-ink-950/60 via-transparent to-ink-950/70" />
+          <h2 className="mx-auto max-w-4xl font-display text-5xl leading-[.98] tracking-tight text-ivory sm:text-7xl lg:text-8xl">
+            <RevealWords as="span" parts={[{ t: 'Make your next hire ' }, { t: 'your best one.', c: 'lx-text-gold italic' }]} />
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/60">
+          <p className="mx-auto mt-7 max-w-xl text-lg leading-8 text-white/70">
             Start with a fair, focused assessment experience built for the way modern teams hire.
           </p>
-          <button onClick={onCandidate} className="lx-btn-gold group mt-10 inline-flex h-14 items-center gap-2 rounded-full px-10 text-[.95rem]">
-            Get started with {BRAND.name}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          <div className="mt-11">
+            <Magnetic>
+              <button onClick={onCandidate} className="lx-btn-gold group inline-flex h-14 items-center gap-2 rounded-full px-10 text-[.95rem]">
+                Get started with {BRAND.name}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </Magnetic>
+          </div>
         </div>
       </Reveal>
     </section>
@@ -159,6 +176,11 @@ export function LuxFooter({ onCandidate, onRecruiter }: Handlers) {
           <button className={`${col} text-left`} onClick={onCandidate}>Candidate sign in</button>
           <button className={`${col} text-left`} onClick={onRecruiter}>Recruiter portal</button>
         </nav>
+      </div>
+      <div aria-hidden="true" className="relative overflow-hidden border-t border-white/[.06] select-none">
+        <p className="lx-outline whitespace-nowrap text-center font-display text-[clamp(5rem,23vw,22rem)] leading-[.8] tracking-tight [mask-image:linear-gradient(180deg,#000_10%,transparent_95%)]">
+          Recruitix
+        </p>
       </div>
       <div className="border-t border-white/[.06]">
         <p className="mx-auto max-w-7xl px-5 py-6 text-xs text-white/35 sm:px-8">
