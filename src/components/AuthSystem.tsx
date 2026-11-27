@@ -101,7 +101,7 @@ const AuthSystem = ({ onLogin, onBack }: AuthSystemProps) => {
           </CardTitle>
           <CardDescription className="dark:text-slate-300">
             {authMode === 'login' && 'Sign in to your account'}
-            {authMode === 'signup' && 'Create your Hirex account'}
+            {authMode === 'signup' && 'Create your Recruitix account'}
             {authMode === 'forgot' && 'Enter your email to reset password'}
             {authMode === 'otp' && 'Enter the 6-digit code sent to your email'}
           </CardDescription>
@@ -197,7 +197,7 @@ const AuthSystem = ({ onLogin, onBack }: AuthSystemProps) => {
 
             <Button 
               type="submit" 
-              className="w-full bg-blue-500 hover:bg-blue-600"
+              className="w-full lx-btn-gold"
               disabled={loading}
             >
               {loading ? 'Processing...' : 
@@ -214,7 +214,7 @@ const AuthSystem = ({ onLogin, onBack }: AuthSystemProps) => {
                   <button
                     type="button"
                     onClick={() => setAuthMode('forgot')}
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400"
+                    className="text-blue-500 hover:text-blue-600 dark:text-champagne"
                   >
                     Forgot your password?
                   </button>
@@ -223,7 +223,7 @@ const AuthSystem = ({ onLogin, onBack }: AuthSystemProps) => {
                     <button
                       type="button"
                       onClick={() => setAuthMode('signup')}
-                      className="text-blue-500 hover:text-blue-600 dark:text-blue-400"
+                      className="text-blue-500 hover:text-blue-600 dark:text-champagne"
                     >
                       Sign up
                     </button>
@@ -237,7 +237,7 @@ const AuthSystem = ({ onLogin, onBack }: AuthSystemProps) => {
                   <button
                     type="button"
                     onClick={() => setAuthMode('login')}
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400"
+                    className="text-blue-500 hover:text-blue-600 dark:text-champagne"
                   >
                     Sign in
                   </button>
@@ -248,7 +248,7 @@ const AuthSystem = ({ onLogin, onBack }: AuthSystemProps) => {
                 <button
                   type="button"
                   onClick={() => setAuthMode('login')}
-                  className="text-blue-500 hover:text-blue-600 dark:text-blue-400"
+                  className="text-blue-500 hover:text-blue-600 dark:text-champagne"
                 >
                   Back to login
                 </button>

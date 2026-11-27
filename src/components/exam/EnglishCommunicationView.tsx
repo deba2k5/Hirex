@@ -138,7 +138,7 @@ const EnglishCommunicationView = ({ sessionId, durationMin, questions, onSubmit 
         />
         <div className="space-y-6">
         {questions.map((question, index) => (
-          <Card id={`english-question-${question.id}`} key={question.id} onClick={() => setCurrentIndex(index)} className="bg-slate-900 border-slate-700">
+          <Card id={`english-question-${question.id}`} key={question.id} onClick={() => setCurrentIndex(index)} className="hirex-card">
             <CardHeader>
               <div className="flex items-center justify-between gap-3">
                 <Badge variant="outline" className="text-slate-300 border-slate-600">{question.category}</Badge>
@@ -147,11 +147,11 @@ const EnglishCommunicationView = ({ sessionId, durationMin, questions, onSubmit 
               {question.passage && <p className="text-slate-300 leading-7 bg-slate-800/70 rounded-lg p-4">{question.passage}</p>}
               {question.audioText && (
                 <div className="rounded-lg border border-blue-500/30 bg-blue-950/30 p-4">
-                  <p className="text-blue-200 text-sm mb-3">Listen to the one-minute paragraph before answering its five questions.</p>
+                  <p className="text-champagne-light text-sm mb-3">Listen to the one-minute paragraph before answering its five questions.</p>
                   {question.audioUrl ? (
                     <audio controls src={question.audioUrl} className="w-full" />
                   ) : (
-                    <Button onClick={() => speak(question)} className="bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button onClick={() => speak(question)} className="lx-btn-gold">
                       {playingId === question.id ? <><Square className="w-4 h-4 mr-2" /> Stop audio</> : <><Play className="w-4 h-4 mr-2" /> Play audio</>}
                     </Button>
                   )}
@@ -172,7 +172,7 @@ const EnglishCommunicationView = ({ sessionId, durationMin, questions, onSubmit 
               ) : question.category === 'Speaking' ? (
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-slate-300 text-sm"><Video className="w-4 h-4 text-red-400" /> Record a 60-second video response. It will be stored for admin review.</div>
-                  <Button onClick={() => recordingId === question.id ? stopRecording(question.id) : startRecording(question)} className={recordingId === question.id ? 'bg-red-700 hover:bg-red-800 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}>
+                  <Button onClick={() => recordingId === question.id ? stopRecording(question.id) : startRecording(question)} className={recordingId === question.id ? 'bg-red-700 hover:bg-red-800 text-white' : 'lx-btn-gold'}>
                     <Mic className="w-4 h-4 mr-2" /> {recordingId === question.id ? `Stop recording (${recordingSeconds}s)` : 'Start 60-second recording'}
                   </Button>
                   <Textarea value={answers[question.id] ?? ''} onChange={(event) => setAnswers((prev) => ({ ...prev, [question.id]: event.target.value }))} placeholder="Optional transcript..." className="min-h-[100px] bg-slate-800 border-slate-600 text-white" />

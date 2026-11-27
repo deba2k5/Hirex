@@ -74,7 +74,7 @@ const Coding2RoundView = ({ durationMin, questions, onSubmit }: Coding2RoundView
 
         <div className="grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)_minmax(0,1fr)]">
           <QuestionNavigator questions={questions} currentIndex={currentIndex} answers={answers} onSelect={setCurrentIndex} />
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="hirex-card">
             <CardHeader><CardTitle className="text-white">{question.prompt}</CardTitle></CardHeader>
             <CardContent className="space-y-4 text-sm text-slate-300">
               <p>{question.description}</p>
@@ -95,7 +95,7 @@ const Coding2RoundView = ({ durationMin, questions, onSubmit }: Coding2RoundView
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="hirex-card">
             <CardHeader className="space-y-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-white">{question.mode === 'debugging' ? 'Corrected code' : 'Your solution'}</CardTitle>

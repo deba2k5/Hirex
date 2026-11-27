@@ -77,7 +77,7 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
 
         <div className="grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)]">
         <QuestionNavigator questions={questions} currentIndex={currentIndex} answers={answers} onSelect={setCurrentIndex} />
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="hirex-card">
           <CardHeader>
             <CardTitle className="text-white text-lg">{question.prompt}</CardTitle>
           </CardHeader>
@@ -120,7 +120,7 @@ const RoundView = ({ title, durationMin, questions, onSubmit }: RoundViewProps) 
               Submit Round
             </Button>
           ) : (
-            <Button onClick={() => setCurrentIndex((i) => i + 1)} className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button onClick={() => setCurrentIndex((i) => i + 1)} className="lx-btn-gold">
               Next <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
           )}

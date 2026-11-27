@@ -57,16 +57,16 @@ const ExamReportsPage = ({ onSelectReport, onBack, onLogout }: ExamReportsPagePr
         </div>
 
         {error && <Card className="bg-slate-900 border-red-500/50"><CardContent className="p-5 text-red-300">{error}</CardContent></Card>}
-        {loading && <Card className="bg-slate-900 border-slate-700"><CardContent className="p-5 text-white">Loading reports...</CardContent></Card>}
+        {loading && <Card className="hirex-card"><CardContent className="p-5 text-white">Loading reports...</CardContent></Card>}
         {!loading && !error && reports.length === 0 && (
-          <Card className="bg-slate-900 border-slate-700"><CardContent className="p-8 text-center text-slate-300">No completed exam reports yet. Complete an assessment to see it here.</CardContent></Card>
+          <Card className="hirex-card"><CardContent className="p-8 text-center text-slate-300">No completed exam reports yet. Complete an assessment to see it here.</CardContent></Card>
         )}
         <div className="grid gap-4">
           {reports.map((report) => (
-            <Card key={report.sessionId} className="hirex-card bg-slate-900 border-slate-700">
+            <Card key={report.sessionId} className="hirex-card hirex-card">
               <CardHeader className="flex flex-row items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
-                  <BarChart3 className="w-7 h-7 text-blue-400 mt-1" />
+                  <BarChart3 className="w-7 h-7 text-champagne mt-1" />
                   <div>
                     <CardTitle className="text-white">{SECTION_TITLES[report.section ?? ''] ?? 'Assessment'}</CardTitle>
                     <CardDescription className="text-slate-400">
@@ -82,7 +82,7 @@ const ExamReportsPage = ({ onSelectReport, onBack, onLogout }: ExamReportsPagePr
                 <div className="text-sm text-slate-300">
                   {report.percentage === null ? 'Score pending' : <><strong className="text-white">{report.percentage}%</strong>{report.score !== null ? ` · Score ${report.score}` : ''}</>}
                 </div>
-                <Button onClick={() => onSelectReport(report.sessionId)} className="hirex-action bg-blue-600 hover:bg-blue-700 text-white"><FileText className="w-4 h-4 mr-2" />View report</Button>
+                <Button onClick={() => onSelectReport(report.sessionId)} className="hirex-action lx-btn-gold"><FileText className="w-4 h-4 mr-2" />View report</Button>
               </CardContent>
             </Card>
           ))}

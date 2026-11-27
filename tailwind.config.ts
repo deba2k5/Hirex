@@ -20,8 +20,23 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				display: ['"Instrument Serif"', '"Cormorant Garamond"', 'Georgia', 'serif'],
 			},
 			colors: {
+				// Recruitix luxe palette: obsidian ink + champagne gold
+				ink: {
+					950: '#06070a',
+					900: '#0a0c11',
+					800: '#10131a',
+					700: '#181c26',
+					600: '#232836',
+				},
+				champagne: {
+					DEFAULT: '#d8b97a',
+					light: '#f1dfb4',
+					deep: '#a98643',
+				},
+				ivory: '#f4efe4',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -87,11 +102,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'marquee': {
+					from: { transform: 'translateX(0)' },
+					to: { transform: 'translateX(-50%)' }
+				},
+				'float-slow': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'shimmer': {
+					from: { backgroundPosition: '200% 0' },
+					to: { backgroundPosition: '-200% 0' }
+				},
+				'pulse-ring': {
+					'0%': { boxShadow: '0 0 0 0 rgba(94,199,154,.45)' },
+					'70%': { boxShadow: '0 0 0 10px rgba(94,199,154,0)' },
+					'100%': { boxShadow: '0 0 0 0 rgba(94,199,154,0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'marquee': 'marquee 40s linear infinite',
+				'float-slow': 'float-slow 7s ease-in-out infinite',
+				'shimmer': 'shimmer 6s linear infinite',
+				'pulse-ring': 'pulse-ring 2.4s ease-out infinite'
 			}
 		}
 	},

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -55,140 +55,241 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  @keyframes hirex-grid-shift {
-    from { background-position: 0 0, 0 0; }
-    to { background-position: 48px 48px, 48px 48px; }
+  /* ==========================================================================
+     Recruitix luxe system — obsidian ink + champagne gold.
+     The same class names the app already uses (hirex-*) now carry the new look,
+     so every screen (sign-in, exam, reports) updates without touching its logic.
+     ========================================================================== */
+
+  :root {
+    --lx-ink: #06070a;
+    --lx-ink-2: #0a0c11;
+    --lx-gold: #d8b97a;
+    --lx-gold-light: #f1dfb4;
+    --lx-gold-deep: #a98643;
+    --lx-ivory: #f4efe4;
+    --lx-line: rgba(255, 255, 255, 0.09);
+    --lx-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
+  /* a fine film-grain used on dark surfaces (inline SVG noise, no image file) */
+  .lx-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* hairline grid that fades out toward the edges */
+  .lx-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  }
+
+  .lx-text-gold {
+    background: linear-gradient(100deg, var(--lx-gold-deep), var(--lx-gold-light) 45%, var(--lx-gold) 70%, var(--lx-gold-deep));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* glass surface */
+  .lx-glass {
+    background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+    border: 1px solid var(--lx-line);
+    -webkit-backdrop-filter: blur(22px) saturate(130%);
+    backdrop-filter: blur(22px) saturate(130%);
+    box-shadow: 0 30px 80px -40px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.07);
+  }
+
+  /* primary action: champagne with a soft inner highlight and a slow sheen on hover */
+  .lx-btn-gold {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: #1a1305 !important;
+    font-weight: 600;
+    background: linear-gradient(180deg, #f1dfb4, #d8b97a 55%, #c6a15f) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,.55) inset, 0 12px 30px -12px rgba(216,185,122,.55), 0 0 0 1px rgba(169,134,67,.5);
+    transition: transform .35s var(--lx-ease), box-shadow .35s var(--lx-ease), filter .35s;
+  }
+  .lx-btn-gold::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .8s var(--lx-ease);
+  }
+  .lx-btn-gold:hover { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 18px 40px -14px rgba(216,185,122,.7), 0 0 0 1px rgba(169,134,67,.6); }
+  .lx-btn-gold:hover::after { transform: translateX(120%); }
+  .lx-btn-gold:active { transform: translateY(0); }
+
+  .lx-btn-glass {
+    color: var(--lx-ivory) !important;
+    background: rgba(255,255,255,.05) !important;
+    border: 1px solid rgba(255,255,255,.14);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background .3s, border-color .3s, transform .35s var(--lx-ease);
+  }
+  .lx-btn-glass:hover { background: rgba(255,255,255,.1); border-color: rgba(216,185,122,.5); transform: translateY(-2px); }
+
+  /* ------------------------------------------------------------------
+     Photography treatments. The supplied images are black-and-white (or purple/teal), so they
+     are normalised into the site palette: warm ivory, or full champagne gold.
+     ------------------------------------------------------------------ */
+  .lx-tone-ivory { filter: grayscale(1) sepia(.2) contrast(1.1) brightness(.96); }
+  .lx-tone-gold  { filter: grayscale(1) sepia(.95) saturate(2.6) hue-rotate(-14deg) contrast(1.12) brightness(.9); }
+
+  .lx-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(244, 239, 228, 0.3);
+    transition: -webkit-text-stroke-color .4s, color .4s;
+  }
+
+  @keyframes lx-scan {
+    0%   { transform: translateY(-30%); opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(520%); opacity: 0; }
+  }
+  .lx-scan {
+    animation: lx-scan 4.8s cubic-bezier(.4,0,.2,1) infinite;
+    background: linear-gradient(180deg, transparent, rgba(241,223,180,.55) 50%, transparent);
+  }
+
+  /* ------------------------------------------------------------------
+     Inner app screens (kept class names)
+     ------------------------------------------------------------------ */
   .hirex-home {
     position: relative;
     isolation: isolate;
-    background-color: #111;
-    background-image: linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.42)), url('/hirex-gradient.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    background-color: var(--lx-ink);
   }
 
   .hirex-app-shell {
+    position: relative;
     min-height: 100vh;
+    color: var(--lx-ivory);
     background:
-      linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.88)),
-      url('/hirex-gradient.jpg') center / cover fixed;
+      radial-gradient(ellipse 60% 45% at 85% -5%, rgba(216,185,122,.13), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 0% 100%, rgba(120,140,255,.07), transparent 60%),
+      var(--lx-ink);
+  }
+  .hirex-app-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .5;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 80%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 80%);
+  }
+  /* a lone figure in a pool of light, fading in from the right edge of every inner screen */
+  .hirex-app-shell::after {
+    content: "";
+    position: fixed;
+    inset: 0 0 0 38%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .5;
+    background: url('/img/spotlight-desk.webp') center 40% / cover no-repeat;
+    filter: grayscale(1) sepia(.25) contrast(1.1) brightness(.8);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 55%, #000 100%);
+  }
+  @media (max-width: 900px) {
+    .hirex-app-shell::after { inset: 0; opacity: .22; -webkit-mask-image: none; mask-image: none; }
+  }
+  .hirex-app-shell > * { position: relative; z-index: 1; }
+
+  /* serif for screen headings, the way the landing page does it */
+  .hirex-app-shell h1,
+  .hirex-app-shell h2 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   .hirex-card {
-    border-color: rgba(255,255,255,.16) !important;
+    border-color: var(--lx-line) !important;
     border-radius: 1.25rem !important;
-    background: rgba(255,255,255,.07) !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022)) !important;
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    box-shadow: 0 18px 50px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.08);
+    box-shadow: 0 30px 70px -40px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.07);
+    transition: border-color .4s, transform .5s var(--lx-ease), box-shadow .5s;
   }
+  .hirex-card:hover { border-color: rgba(216,185,122,.35) !important; }
 
   .hirex-action {
     min-height: 3rem;
-    border-radius: .9rem !important;
-    box-shadow: 0 6px 0 rgba(0,0,0,.25), 0 12px 24px rgba(0,0,0,.2);
-    transition: transform 180ms ease, box-shadow 180ms ease;
+    border-radius: .85rem !important;
+    box-shadow: 0 12px 30px -14px rgba(0,0,0,.7);
+    transition: transform 220ms var(--lx-ease), box-shadow 220ms var(--lx-ease), filter 220ms;
   }
-
-  .hirex-action:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 0 rgba(0,0,0,.22), 0 16px 28px rgba(0,0,0,.28);
-  }
+  .hirex-action:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -14px rgba(0,0,0,.8); }
 
   .hirex-report .rounded-lg,
-  .hirex-report .rounded-md {
-    border-radius: .9rem;
-  }
+  .hirex-report .rounded-md { border-radius: .9rem; }
 
-  @media (max-width: 640px) {
-    .hirex-app-shell { background-attachment: scroll; }
-  }
+  .hirex-footer { background: var(--lx-ink); }
 
-  .hirex-footer {
-    background-image: url('/hirex-gradient.jpg');
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-
-  .hirex-home::before {
-    position: absolute;
-    content: '';
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.58) 68%, rgba(0,0,0,.78));
+  /* old floating-nav helper, now matched to the new nav */
+  .floating-nav {
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.1);
   }
 
   .glass-panel {
     -webkit-backdrop-filter: blur(26px) saturate(115%);
     backdrop-filter: blur(26px) saturate(115%);
-    transition: transform 500ms cubic-bezier(.2,.8,.2,1), box-shadow 500ms ease;
   }
 
-  .glass-panel:hover {
-    box-shadow: 0 30px 90px rgba(255,255,255,.08), inset 0 1px 0 rgba(255,255,255,.2);
-  }
-
-  .floating-nav {
-    box-shadow: 0 18px 55px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.12);
-  }
-
+  /* kept for any legacy markup that still uses these */
   .hirex-button {
     position: relative;
     min-width: 156px;
-    border: 1px solid rgba(255,255,255,.7);
-    box-shadow:
-      0 8px 0 rgba(150,150,150,.22),
-      0 16px 30px rgba(0,0,0,.28),
-      inset 0 1px 0 rgba(255,255,255,.95);
-    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    transition: transform 220ms var(--lx-ease), box-shadow 220ms var(--lx-ease);
   }
+  .hirex-button:hover { transform: translateY(-2px); }
+  .hirex-button-hero { min-width: 220px; }
+  .hirex-button-wide { min-width: 100%; }
+  .hirex-button-small { min-width: 164px; }
 
-  .hirex-button:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 11px 0 rgba(150,150,150,.18),
-      0 22px 38px rgba(0,0,0,.38),
-      inset 0 1px 0 rgba(255,255,255,.95);
-  }
+  /* ------------------------------------------------------------------
+     Focus + selection that match the palette
+     ------------------------------------------------------------------ */
+  .hirex-home ::selection,
+  .hirex-app-shell ::selection { background: var(--lx-gold); color: #1a1305; }
 
-  .hirex-button:active {
-    transform: translateY(3px);
-    box-shadow:
-      0 3px 0 rgba(150,150,150,.22),
-      0 8px 16px rgba(0,0,0,.25),
-      inset 0 1px 0 rgba(255,255,255,.85);
-  }
-
-  .hirex-button-hero {
-    min-width: 220px;
-  }
-
-  .hirex-button-wide {
-    min-width: 100%;
-  }
-
-  .hirex-button-small {
-    min-width: 164px;
-  }
-
-  .hirex-mountain-layer {
-    transition: transform 700ms cubic-bezier(.2,.8,.2,1);
-    will-change: transform;
-  }
-
-  #platform:hover .hirex-mountain-layer {
-    transform: translateY(-6px) scale(1.04) !important;
+  /* browser autofill would otherwise paint inputs pale blue on the dark screens */
+  .hirex-app-shell input:-webkit-autofill,
+  .hirex-app-shell input:-webkit-autofill:hover,
+  .hirex-app-shell input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--lx-ivory);
+    caret-color: var(--lx-ivory);
+    -webkit-box-shadow: 0 0 0 1000px #10131a inset;
+    transition: background-color 9999s ease-in-out 0s;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hirex-home,
-    .hirex-mountain-layer { animation: none; transition: none; }
+    .lx-btn-gold, .lx-btn-gold::after, .lx-btn-glass, .hirex-card, .hirex-action { transition: none; }
+    .animate-marquee, .animate-float-slow, .animate-shimmer, .animate-pulse-ring { animation: none !important; }
   }
 
   .dark {

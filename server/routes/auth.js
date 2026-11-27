@@ -90,7 +90,7 @@ router.post('/recruiter-login', asyncHandler(async (req, res) => {
   const recruiter = {
     _id: new ObjectId('000000000000000000000001'),
     email: configuredId,
-    displayName: 'Hirex Administrator',
+    displayName: 'Recruitix Administrator',
     role: 'recruiter',
   };
   res.json({ token: issueToken(recruiter), user: toUserDto(recruiter) });

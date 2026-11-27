@@ -121,10 +121,10 @@ const ExamFaceGate = ({ sessionId, onUnlocked, onManualReview, onCancel }: ExamF
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl bg-slate-900 border-slate-700">
+      <Card className="w-full max-w-2xl hirex-card">
         <CardHeader>
           <CardTitle className="text-2xl text-white flex items-center gap-2">
-            <Eye className="w-6 h-6 text-blue-400" /> Identity Verification
+            <Eye className="w-6 h-6 text-champagne" /> Identity Verification
           </CardTitle>
           <CardDescription className="text-slate-300">
             Confirm it's really you before the exam unlocks.
@@ -135,7 +135,7 @@ const ExamFaceGate = ({ sessionId, onUnlocked, onManualReview, onCancel }: ExamF
 
           {message && (
             <div className="bg-blue-900/20 border border-blue-500/50 rounded-lg p-3">
-              <p className="text-blue-300 text-sm">{message}</p>
+              <p className="text-champagne text-sm">{message}</p>
             </div>
           )}
 
@@ -149,7 +149,7 @@ const ExamFaceGate = ({ sessionId, onUnlocked, onManualReview, onCancel }: ExamF
           <Button
             onClick={runVerification}
             disabled={status === 'loading' || status === 'verifying' || status === 'blink_wait'}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg"
+            className="w-full lx-btn-gold font-medium py-2 rounded-lg"
           >
             {status === 'loading'
               ? 'Loading...'

@@ -42,9 +42,9 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
         )}
 
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="hirex-card bg-slate-900 border-slate-700">
+          <Card className="hirex-card hirex-card">
             <CardHeader className="flex flex-row items-center gap-3">
-              <MessageSquareText className="w-8 h-8 text-blue-400" />
+              <MessageSquareText className="w-8 h-8 text-champagne" />
               <div>
                 <CardTitle className="text-white">English Communication</CardTitle>
                 <CardDescription className="text-slate-400">Listening, reading, speaking, grammar and sentence formation</CardDescription>
@@ -52,13 +52,13 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2 text-sm text-slate-300"><ShieldCheck className="w-4 h-4 text-green-400" /> Only camera and screen sharing are required for proctoring.</div>
-              <Button onClick={() => startRound('english')} disabled={starting !== null} className="hirex-action w-full bg-blue-600 hover:bg-blue-700 text-white">
+              <Button onClick={() => startRound('english')} disabled={starting !== null} className="hirex-action w-full lx-btn-gold">
                 {starting === 'english' ? 'Starting...' : 'Start English Communication'}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </CardContent>
           </Card>
-          <Card className="hirex-card bg-slate-900 border-slate-700">
+          <Card className="hirex-card hirex-card">
             <CardHeader className="flex flex-row items-center gap-3">
               <Mic2 className="w-8 h-8 text-emerald-400" />
               <div><CardTitle className="text-white">Technical Interview</CardTitle><CardDescription className="text-slate-400">Voice-assisted, CV-based technical interview with recorded answers</CardDescription></div>
@@ -68,7 +68,7 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
               <Button onClick={() => startRound('technical_interview')} disabled={starting !== null} className="hirex-action w-full bg-emerald-600 hover:bg-emerald-700 text-white">{starting === 'technical_interview' ? 'Starting...' : 'Start Technical Interview'}<ArrowRight className="w-4 h-4 ml-2" /></Button>
             </CardContent>
           </Card>
-          <Card className="hirex-card bg-slate-900 border-slate-700">
+          <Card className="hirex-card hirex-card">
             <CardHeader className="flex flex-row items-center gap-3">
               <Code2 className="w-8 h-8 text-fuchsia-400" />
               <div>
@@ -84,7 +84,7 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
               </Button>
             </CardContent>
           </Card>
-          <Card className="hirex-card bg-slate-900 border-slate-700">
+          <Card className="hirex-card hirex-card">
             <CardHeader className="flex flex-row items-center gap-3">
               <Code2 className="w-8 h-8 text-cyan-400" />
               <div>
@@ -100,7 +100,7 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
               </Button>
             </CardContent>
           </Card>
-          <Card className="hirex-card bg-slate-900 border-slate-700">
+          <Card className="hirex-card hirex-card">
             <CardHeader className="flex flex-row items-center gap-3">
               <BrainCircuit className="w-8 h-8 text-purple-400" />
               <div>
@@ -116,7 +116,7 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
               </Button>
             </CardContent>
           </Card>
-          <Card className="hirex-card bg-slate-900 border-slate-700">
+          <Card className="hirex-card hirex-card">
             <CardHeader className="flex flex-row items-center gap-3">
               <Calculator className="w-8 h-8 text-amber-400" />
               <div>
@@ -135,7 +135,7 @@ const CompanySelect = ({ onSessionReady, onBack, onReports }: CompanySelectProps
           </div>
 
         <div className="flex flex-wrap gap-3 mt-8">
-          <Button onClick={onReports} variant="outline" className="bg-transparent border-blue-500/60 text-blue-200 hover:bg-blue-950/40">
+          <Button onClick={onReports} variant="outline" className="bg-transparent border-champagne/40 text-champagne-light hover:bg-blue-950/40">
             View my exam reports
           </Button>
           <Button onClick={onBack} variant="outline" className="bg-transparent border-slate-600 text-slate-300 hover:bg-slate-800">
