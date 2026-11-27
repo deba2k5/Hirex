@@ -43,7 +43,14 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
       setToken(token);
       await onAuthenticated();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Authentication failed. Please try again.');
+      const unreachable = err instanceof TypeError || (err instanceof Error && /failed to fetch|networkerror|load failed/i.test(err.message));
+      setError(
+        unreachable
+          ? 'Cannot reach the Recruitix server. Start it with "npm run server" (it listens on port 8787) and try again.'
+          : err instanceof Error
+            ? err.message
+            : 'Authentication failed. Please try again.',
+      );
     } finally {
       setIsLoading(false);
     }
