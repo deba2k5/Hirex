@@ -142,6 +142,24 @@ try {
   r = await call('GET', '/api/exam/reports', { token: candidateToken });
   check('report list loads', r.status === 200, `HTTP ${r.status}`);
 
+  console.log('\nAll six sections, face gate, CV, recordings');
+  let tiId, enId;
+  for (const section of ['english', 'ai_technical', 'coding1', 'coding2', 'technical_interview']) {
+    r = await call('POST', '/api/exam/sessions', { token: candidateToken, body: { companyId: company.id, section } });
+    check(`${section} session can be created`, (r.status === 201 || r.status === 200) && !!r.data?.sessionId, `HTTP ${r.status} ${JSON.stringify(r.data)}`);
+    if (section === 'technical_interview') tiId = r.data?.sessionId;
+    if (section === 'english') enId = r.data?.sessionId;
+  }
+  r = await call('POST', `/api/exam/sessions/${tiId}/unlock`, { token: candidateToken, body: { embedding, livenessPassed: true } });
+  check('face gate unlocks, or correctly refuses an already-started session', (r.status === 200 && r.data?.unlocked === true) || (r.status === 400 && r.data?.error === 'invalid_session'), `HTTP ${r.status} ${JSON.stringify(r.data)}`);
+  r = await call('POST', `/api/exam/sessions/${tiId}/cv`, { token: candidateToken, body: { fileName: 'cv.txt', text: 'Experienced engineer. Skills: JavaScript, React, Node.js, MongoDB. Projects: built a proctoring platform.' } });
+  check('CV text can be uploaded', r.status === 200 || r.status === 201, `HTTP ${r.status} ${JSON.stringify(r.data).slice(0, 150)}`);
+  r = await call('POST', `/api/exam/sessions/${enId}/speaking-recordings`, { token: candidateToken, body: { questionId: question.id, mediaBase64: 'AAAA', contentType: 'video/webm' } });
+  check('speaking recording can be stored', r.status === 201, `HTTP ${r.status} ${JSON.stringify(r.data)}`);
+  r = await call('POST', `/api/exam/sessions/${tiId}/voice-recordings`, { token: candidateToken, body: { questionId: question.id, mediaBase64: 'AAAA', contentType: 'audio/webm' } });
+  check('voice recording can be stored', r.status === 201, `HTTP ${r.status} ${JSON.stringify(r.data)}`);
+  r = await call('POST', `/api/exam/sessions/${enId}/auto-submit`, { token: candidateToken });
+  check('auto-submit works', r.status === 200, `HTTP ${r.status}`);
   console.log('\nPresence');
   r = await call('POST', '/api/auth/heartbeat', { token: candidateToken, body: { page: 'select_company' } });
   check('candidate heartbeat is accepted', r.status === 200, `HTTP ${r.status}`);
