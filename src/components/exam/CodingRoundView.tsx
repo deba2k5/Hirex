@@ -71,7 +71,7 @@ const CodingRoundView = ({ durationMin, questions, onSubmit }: CodingRoundViewPr
 
         <div className="grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)_minmax(0,1fr)]">
           <QuestionNavigator questions={questions} currentIndex={currentIndex} answers={answers} onSelect={setCurrentIndex} />
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="hirex-card">
             <CardHeader><CardTitle className="text-white">{question.prompt}</CardTitle></CardHeader>
             <CardContent className="space-y-4 text-sm text-slate-300">
               <p>{question.description}</p>
@@ -91,7 +91,7 @@ const CodingRoundView = ({ durationMin, questions, onSubmit }: CodingRoundViewPr
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="hirex-card">
             <CardHeader className="space-y-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-white">Your solution</CardTitle>
@@ -115,7 +115,7 @@ const CodingRoundView = ({ durationMin, questions, onSubmit }: CodingRoundViewPr
 
         <div className="flex justify-between">
           <Button variant="outline" disabled={currentIndex === 0} onClick={() => setCurrentIndex((value) => value - 1)} className="bg-transparent border-slate-600 text-slate-300 hover:bg-slate-800"><ChevronLeft className="w-4 h-4 mr-1" />Previous</Button>
-          {isLast ? <Button onClick={submit} className="bg-green-600 hover:bg-green-700 text-white">Submit Coding 1</Button> : <Button onClick={() => setCurrentIndex((value) => value + 1)} className="bg-blue-600 hover:bg-blue-700 text-white">Next<ChevronRight className="w-4 h-4 ml-1" /></Button>}
+          {isLast ? <Button onClick={submit} className="bg-green-600 hover:bg-green-700 text-white">Submit Coding 1</Button> : <Button onClick={() => setCurrentIndex((value) => value + 1)} className="lx-btn-gold">Next<ChevronRight className="w-4 h-4 ml-1" /></Button>}
         </div>
       </div>
     </div>

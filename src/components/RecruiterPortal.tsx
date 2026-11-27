@@ -142,12 +142,12 @@ const RecruiterPortal = ({ onBack }: { onBack: () => void }) => {
     <div className="hirex-app-shell min-h-screen text-white">
       <header className="floating-nav sticky top-3 z-30 mx-3 rounded-full border border-white/20 bg-black/55 backdrop-blur-2xl sm:mx-6 lg:mx-auto lg:max-w-7xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-          <Button variant="ghost" onClick={onBack} className="text-slate-300 hover:bg-white/10 hover:text-white"><ArrowLeft className="mr-2 h-4 w-4" />Back to Hirex</Button>
+          <Button variant="ghost" onClick={onBack} className="text-slate-300 hover:bg-white/10 hover:text-white"><ArrowLeft className="mr-2 h-4 w-4" />Back to Recruitix</Button>
           <div className="flex items-center gap-3"><Badge className="border-white/20 bg-white/10 text-white"><ShieldAlert className="mr-2 h-3.5 w-3.5" />Admin workspace</Badge><span className="hidden text-sm text-slate-400 sm:inline">{activeUsers.length} live candidates</span></div>
         </div>
       </header>
       <main className="mx-auto max-w-7xl space-y-8 px-5 py-8 sm:px-8">
-        <div><p className="text-sm uppercase tracking-[.2em] text-slate-500">Hirex operations</p><h1 className="mt-2 text-4xl font-semibold tracking-tight">Candidate command center</h1><p className="mt-2 text-slate-400">Review enrollment details, assessment progress, reports, and integrity signals in one place.</p></div>
+        <div><p className="text-sm uppercase tracking-[.2em] text-slate-500">Recruitix operations</p><h1 className="mt-2 text-4xl font-semibold tracking-tight">Candidate command center</h1><p className="mt-2 text-slate-400">Review enrollment details, assessment progress, reports, and integrity signals in one place.</p></div>
         {error && <div className="rounded-xl border border-red-400/30 bg-red-400/10 p-4 text-sm text-red-200">{error}</div>}
         {loading ? <div className="flex items-center justify-center py-24 text-slate-300"><Loader className="mr-3 h-5 w-5 animate-spin" />Loading candidate records...</div> : overview && (
           <>

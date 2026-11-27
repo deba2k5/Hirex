@@ -8,7 +8,6 @@ import { ThemeProvider } from "./ThemeProvider";
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import ThreeJsBackground from "@/components/ThreeJsBackground";
 import Chatbot from "@/components/Chatbot";
 
 const queryClient = new QueryClient();
@@ -17,7 +16,6 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light" storageKey="hirex-theme">
       <TooltipProvider>
-        <ThreeJsBackground />
         <Toaster />
         <Sonner />
         <BrowserRouter>

@@ -133,11 +133,11 @@ const AuthPage = ({ onBack, onAuthSuccess }: AuthPageProps) => {
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 mb-6 shadow-lg mx-auto">
             <img 
               src="/brain-logo.png" 
-              alt="Hirex Logo"
+              alt="Recruitix Logo"
               className="w-8 h-8 object-contain"
             />
           </div>
-          <CardTitle className="text-2xl text-white">Join Hirex</CardTitle>
+          <CardTitle className="text-2xl text-white">Join Recruitix</CardTitle>
           <CardDescription className="text-gray-300">
             Create your account to get started
           </CardDescription>

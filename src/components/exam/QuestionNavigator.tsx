@@ -22,7 +22,7 @@ const QuestionNavigator = ({ questions, currentIndex, answers, onSelect }: Quest
   }, new Map());
 
   return (
-    <Card className="bg-slate-900 border-slate-700 lg:sticky lg:top-20 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+    <Card className="hirex-card lg:sticky lg:top-20 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
       <CardHeader>
         <CardTitle className="text-white text-base">Questions and sections</CardTitle>
         <p className="text-xs text-slate-400">{Object.keys(answers).filter((id) => answers[id]?.trim()).length} answered · {questions.length - Object.keys(answers).filter((id) => answers[id]?.trim()).length} left</p>

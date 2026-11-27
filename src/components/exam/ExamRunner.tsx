@@ -270,7 +270,7 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
             <CardDescription className="text-red-300">{initError}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={onExamComplete} className="w-full bg-blue-600 hover:bg-blue-700 text-white">Return to Communication Round</Button>
+            <Button onClick={onExamComplete} className="w-full lx-btn-gold">Return to Communication Round</Button>
           </CardContent>
         </Card>
       </div>
@@ -280,10 +280,10 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
   if (!secureExamStarted) {
     return (
       <div className="hirex-app-shell min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-lg bg-slate-900 border-slate-700">
+        <Card className="w-full max-w-lg hirex-card">
           <CardHeader><CardTitle className="text-white">Proctored Exam</CardTitle><CardDescription className="text-slate-300">Camera and screen sharing are required for proctoring. You can exit the exam at any time.</CardDescription></CardHeader>
           <CardContent className="space-y-4">
-            <Button onClick={startSecureExam} className="w-full bg-blue-600 hover:bg-blue-700 text-white">Enable camera and screen sharing</Button>
+            <Button onClick={startSecureExam} className="w-full lx-btn-gold">Enable camera and screen sharing</Button>
             <Button onClick={onExamComplete} variant="outline" className="w-full border-slate-600 text-slate-300">Exit</Button>
           </CardContent>
         </Card>

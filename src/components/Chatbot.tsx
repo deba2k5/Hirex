@@ -57,24 +57,24 @@ const Chatbot = () => {
       {/* Chat Button */}
       <Button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 w-14 h-14 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg z-50 ${isOpen ? 'hidden' : 'flex'} items-center justify-center`}
+        className={`lx-btn-gold fixed bottom-6 right-6 w-14 h-14 rounded-full z-50 ${isOpen ? 'hidden' : 'flex'} items-center justify-center`}
       >
-        <MessageSquare className="w-6 h-6 text-white" />
+        <MessageSquare className="w-6 h-6" />
       </Button>
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-80 h-96 bg-white dark:bg-slate-800 shadow-2xl z-50 flex flex-col">
-          <CardHeader className="flex flex-row items-center justify-between p-4 bg-blue-500 text-white rounded-t-lg">
+        <Card className="lx-glass fixed bottom-6 right-6 z-50 flex h-[26rem] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-3xl border-white/10 bg-ink-900/90 text-ivory shadow-2xl">
+          <CardHeader className="flex flex-row items-center justify-between border-b border-white/10 bg-white/[.04] p-4 text-ivory">
             <div className="flex items-center space-x-2">
               <Bot className="w-5 h-5" />
-              <CardTitle className="text-sm">Hirex Assistant</CardTitle>
+              <CardTitle className="font-display text-xl font-normal">Recruitix assistant</CardTitle>
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(false)}
-              className="text-white hover:bg-blue-600 h-8 w-8"
+              className="h-8 w-8 text-ivory hover:bg-white/10 hover:text-ivory"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -89,17 +89,17 @@ const Chatbot = () => {
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className={`flex items-start space-x-2 max-w-[80%] ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${message.sender === 'user' ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'}`}>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${message.sender === 'user' ? 'bg-champagne' : 'bg-white/10'}`}>
                       {message.sender === 'user' ? (
-                        <User className="w-3 h-3 text-white" />
+                        <User className="w-3 h-3 text-ink-950" />
                       ) : (
-                        <Bot className="w-3 h-3 text-slate-600 dark:text-slate-300" />
+                        <Bot className="w-3 h-3 text-champagne" />
                       )}
                     </div>
-                    <div className={`px-3 py-2 rounded-lg text-sm ${
+                    <div className={`px-3 py-2 rounded-2xl text-sm ${
                       message.sender === 'user' 
-                        ? 'bg-blue-500 text-white' 
-                        : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200'
+                        ? 'bg-champagne text-ink-950' 
+                        : 'bg-white/[.07] text-ivory/90'
                     }`}>
                       {message.text}
                     </div>
@@ -109,16 +109,16 @@ const Chatbot = () => {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t dark:border-slate-700">
+            <div className="border-t border-white/10 p-4">
               <div className="flex space-x-2">
                 <Input
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 dark:bg-slate-700 dark:text-white"
+                  className="flex-1 rounded-full border-white/10 bg-white/[.05] text-ivory placeholder:text-white/30"
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 />
-                <Button onClick={handleSendMessage} size="icon" className="bg-blue-500 hover:bg-blue-600">
+                <Button onClick={handleSendMessage} size="icon" className="lx-btn-gold rounded-full">
                   <Send className="w-4 h-4" />
                 </Button>
               </div>

@@ -52,9 +52,9 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
   return (
     <div className="hirex-app-shell min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <Card className="bg-slate-900 border-slate-700">
+        <Card className="hirex-card">
           <CardHeader className="space-y-3 text-center">
-            <CardTitle className="text-2xl text-white">Hirex Account</CardTitle>
+            <CardTitle className="font-display text-4xl font-normal text-ivory">Recruitix account</CardTitle>
             <CardDescription className="text-slate-300">
               {mode === 'signup'
                 ? 'Create your candidate account'
@@ -80,7 +80,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
                       placeholder="Your Name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                      className="w-full bg-white/[.04] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-champagne/60"
                     />
                   </div>
                 </div>
@@ -95,7 +95,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
                     placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-600 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                    className="w-full bg-white/[.04] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-champagne/60"
                   />
                 </div>
               </div>
@@ -110,7 +110,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
                       placeholder="e.g. 3rd Year"
                       value={year}
                       onChange={(e) => setYear(e.target.value)}
-                      className="w-full bg-slate-800 border border-slate-600 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                      className="w-full bg-white/[.04] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-champagne/60"
                     />
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
                         placeholder="e.g. Computer Science"
                         value={department}
                         onChange={(e) => setDepartment(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-600 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                        className="w-full bg-white/[.04] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-champagne/60"
                       />
                     </div>
                   </div>
@@ -140,7 +140,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
                         placeholder="Your enrollment number"
                         value={enrollmentNo}
                         onChange={(e) => setEnrollmentNo(e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-600 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                        className="w-full bg-white/[.04] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-champagne/60"
                       />
                     </div>
                   </div>
@@ -156,7 +156,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-600 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                    className="w-full bg-white/[.04] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-champagne/60"
                   />
                 </div>
               </div>
@@ -164,7 +164,7 @@ const AuthGate = ({ onBack, onAuthenticated }: AuthGateProps) => {
               <Button
                 onClick={handleSubmit}
                 disabled={isLoading || (mode === 'signup' ? !isSignupValid : !isSigninValid)}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg"
+                className="w-full lx-btn-gold font-medium py-2 rounded-lg"
               >
                 {isLoading ? 'Please wait...' : mode === 'signup' ? 'Create Account' : 'Sign In'}
               </Button>
