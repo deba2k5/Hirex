@@ -364,6 +364,7 @@ const ExamRunner = ({ sessionId, onExamComplete }: ExamRunnerProps) => {
           onSubmit={(result) => handleRoundSubmit('technical_interview', result)}
         />
       ) : <RoundView
+        key={session.currentRound}
         title={ROUND_TITLES[session.currentRound]}
         durationMin={durationMin}
         questions={questions}

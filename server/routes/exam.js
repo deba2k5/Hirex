@@ -366,7 +366,9 @@ router.post('/sessions/:id/round-score', requireAuth, loadOwnedSession, asyncHan
   };
   await req.db.collection('examSessions').updateOne({ _id: req.session._id }, { $set: fieldSet });
 
-  const isStandaloneCoding = ['coding1', 'coding2', 'technical_interview'].includes(req.session.section) || ['coding1', 'coding2', 'technical_interview'].includes(req.session.currentRound);
+  // Every candidate-facing section is its own independent exam: submitting it ends the session and produces a report.
+  const STANDALONE = ['english', 'aptitude', 'ai_technical', 'coding1', 'coding2', 'technical_interview'];
+  const isStandaloneCoding = STANDALONE.includes(req.session.section) || STANDALONE.includes(req.session.currentRound);
   const nextIndex = ROUND_ORDER.indexOf(round) + 1;
   const nextRound = isStandaloneCoding ? null : (nextIndex < ROUND_ORDER.length ? ROUND_ORDER[nextIndex] : null);
 
